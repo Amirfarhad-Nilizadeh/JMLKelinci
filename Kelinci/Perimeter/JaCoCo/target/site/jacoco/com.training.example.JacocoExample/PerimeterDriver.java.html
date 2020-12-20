@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PerimeterDriver.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JacocoExample</a> &gt; <a href="index.source.html" class="el_package">com.training.example.JacocoExample</a> &gt; <span class="el_source">PerimeterDriver.java</span></div><h1>PerimeterDriver.java</h1><pre class="source lang-java linenums">package com.training.example.JacocoExample;
+<span class="fc" id="L2">public class PerimeterDriver{</span>
+	//@ requires 0 &lt;= select &amp;&amp; select &lt; 6;
+	//@ {|
+		//@ requires select == 0;
+		//@ requires 0 &lt; shortNum &amp;&amp; shortNum &lt;= Short.MAX_VALUE;
+		//@ ensures \result == 4*shortNum;
+
+		//@ also 
+
+		//@ requires select == 1;
+		//@ requires 0 &lt; w &amp;&amp; w &lt;= Integer.MAX_VALUE;
+		//@ ensures \result == 5*w;
+
+		//@ also 
+
+		//@ requires select == 2;
+		//@ requires 0 &lt; longNum &amp;&amp; 6*longNum &lt;= Long.MAX_VALUE;
+		//@ ensures \result == 6*longNum;
+
+		//@ also 
+
+		//@ requires select == 3;
+		//@ requires 0 &lt; w &amp;&amp; 0 &lt; x &amp;&amp; 2*w + 2*x &lt;= Integer.MAX_VALUE;
+		//@ ensures \result == 2*w + 2*x;
+
+		//@ also 
+
+		//@ requires select == 4;
+		//@ requires 0 &lt; w &amp;&amp; 0 &lt; x &amp;&amp; 0 &lt; y &amp;&amp; w + x + y &lt;= Integer.MAX_VALUE;
+		//@ ensures \result == w + x + y;
+		
+		//@ also 
+
+		//@ requires select == 5;
+		//@ requires 0 &lt; w &amp;&amp; 0 &lt; x &amp;&amp; 0 &lt; y &amp;&amp; 0 &lt; z &amp;&amp; w + x + y + z &lt;= Integer.MAX_VALUE;
+		//@ ensures \result == w + x + y + z;
+	//@ |}
+		
+	public long Driver(int select, int w, int x, int y, int z, short shortNum, long longNum){
+
+<span class="fc" id="L42">		Perimeter p = new Perimeter();</span>
+<span class="fc" id="L43">		long result = 0;</span>
+
+<span class="pc bpc" id="L45" title="6 of 7 branches missed.">		switch(select){</span>
+		case 0:
+<span class="nc" id="L47">			result = p.Perimeter(shortNum);</span>
+<span class="nc" id="L48">			break;</span>
+		case 1:
+<span class="fc" id="L50">			result = p.Perimeter(w);</span>
+<span class="fc" id="L51">			break;</span>
+		case 2:
+<span class="nc" id="L53">			result = p.Perimeter(longNum);</span>
+<span class="nc" id="L54">			break;</span>
+		case 3:	
+<span class="nc" id="L56">			result = p.Perimeter(w, x);</span>
+<span class="nc" id="L57">			break;</span>
+		case 4:
+<span class="nc" id="L59">			result = p.Perimeter(w, x, y);</span>
+<span class="nc" id="L60">			break;</span>
+		case 5:
+<span class="nc" id="L62">			result = p.Perimeter(w, x, y, z);</span>
+			break;
+		}
+<span class="fc" id="L65">		return result;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>
