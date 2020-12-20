@@ -8,7 +8,7 @@ JMLKelinci has three advantages in comparison with Kelinci:
 2) By avoiding covering branches with invalid inputs, the tool finds bugs with valid inputs. Valid inputs are both more efficient to run and more valuable for demonstrating bugs.
 3) The initial seed for the fuzzer can be chosen with fewer restrictions. 
 
-This ReadMe assumes that both Kelinci and OpenJML are installed in a Linux system, both work by Java 8. Also, 28 examples from the [Java+JML](https://github.com/Amirfarhad-Nilizadeh/Java-JML) dataset are used in the "example" directory.
+This ReadMe assumes that both Kelinci and OpenJML are installed in a Linux system, both work by Java 8. Also, 28 examples from the [Java+JML](https://github.com/Amirfarhad-Nilizadeh/Java-JML) dataset are used in the Kelinci and JMLKelinci directories.
 
 
 # Installation
