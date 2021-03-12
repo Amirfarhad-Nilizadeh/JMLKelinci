@@ -4,7 +4,7 @@
      import java.nio.ByteBuffer;
 
      public class KelinciDriverMain {	 
-    	 private static String address ="~/jml";
+    	 private static String address = "../jml";
     	 public static void main(String args[]) {
 
 	 	if (args.length != 1) {
