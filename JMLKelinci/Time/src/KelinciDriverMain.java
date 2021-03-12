@@ -131,7 +131,7 @@
 		try {
 			process = builderProg.start();
 			process.waitFor();
-			result = process.exitValue() == 0 ? true : false;
+			result = process.exitValue() == 0;
 		} catch (Exception e) {	
 			e.printStackTrace();	
 			System.err.println("Error in the RunRac method!");

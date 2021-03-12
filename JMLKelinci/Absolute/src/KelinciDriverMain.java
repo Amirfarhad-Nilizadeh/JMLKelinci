@@ -4,7 +4,7 @@
      import java.nio.ByteBuffer;
 
      public class KelinciDriverMain {	 
-    	 private static String address ="~/jml";
+    	 private static String address ="/~/jml";
     	 public static void main(String args[]) {
 
 	 	if (args.length != 1) {
@@ -68,7 +68,7 @@
 		try {
 			process = builderProg.start();
 			process.waitFor();
-			result = process.exitValue() == 0 ? true : false;
+			result = process.exitValue() == 0;
 		} catch (Exception e) {	
 			e.printStackTrace();	
 			System.err.println("Error in the RunRac method!");

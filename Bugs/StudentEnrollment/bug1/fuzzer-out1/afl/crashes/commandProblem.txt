@@ -1,0 +1,8 @@
+javac *.java; java DataStreamExample>>Input.txt  ; rm *.class
+
+It will show that the following input can pass the precondition. JMLDriver -41 -10 16695039 0 2139062143 -1720877185 -8421505
+
+However, if you go to jml directory and run the "runrac JMLDriver -41 -10 16695039 0 2139062143 -1720877185 -8421505" the precondition is invalid.
+
+
+The precondition is false, but "process.exitValue()" is equal to zero.

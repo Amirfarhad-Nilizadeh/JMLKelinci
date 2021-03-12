@@ -40,8 +40,6 @@
 			arraySize1 = arraySize1%range;// This is not for Specification. "arraySize%range" is for memory limitation of the System.
 			arraySize2 = arraySize2%range;// This is not for Specification. "arraySize%range" is for memory limitation of the System.
 
-			iBegin %= arraySize1; 
-			iEnd %= arraySize2;
 			
 			int array1[] = new int[arraySize1]; 
 			int array2[] = new int[arraySize2];
@@ -121,7 +119,7 @@
 		try {
 			process = builderProg.start();
 			process.waitFor();
-			result = process.exitValue() == 0 ? true : false;
+			result = process.exitValue() == 0;
 		} catch (Exception e) {	
 			e.printStackTrace();	
 			System.err.println("Error in the RunRac method");

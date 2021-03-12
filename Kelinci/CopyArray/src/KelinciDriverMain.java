@@ -37,8 +37,6 @@
 			arraySize1 = arraySize1%range;// This is not for Specification. "arraySize%range" is for memory limitation of the System.
 			arraySize2 = arraySize2%range;// This is not for Specification. "arraySize%range" is for memory limitation of the System.
 
-			iBegin %= arraySize1; 
-			iEnd %= arraySize2;
 			
 			int array1[] = new int[arraySize1]; 
 			int array2[] = new int[arraySize2];

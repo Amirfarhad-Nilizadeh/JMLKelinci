@@ -1,4 +1,4 @@
 public class BubbleSort { 
-    //@ requires 0 < arr.length && arr.length < Integer.MAX_VALUE;
+    //@ requires 0 < arr.length;
     int[] bubbleSort(int arr[]) { return null; } 
 }
