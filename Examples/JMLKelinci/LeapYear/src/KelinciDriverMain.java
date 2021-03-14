@@ -31,7 +31,6 @@
 		
 		boolean precondition = RunRAC(year);
 		
-
 		if (precondition) {
 			LeapYear y = new LeapYear();
 			y.isLeapYear(year);
