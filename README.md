@@ -11,20 +11,17 @@ JMLKelinci has four advantages in comparison with Kelinci:
 
 Also, 28 examples from the [Java+JML](https://github.com/Amirfarhad-Nilizadeh/Java-JML) dataset used in the TAP's study (under review paper) are available to reproduce the results. Each program ran five times with Kelinci and JMLKelinci; valid generated input tests for each run are collected manually in a JUnit. 
 
+To reproduce the TAP's study first do the installation process and then go to the "Executing Examples" section and use provided shell scripts. 
+
 # Installation
 
-This README assumes that both Kelinci and OpenJML are installed in a Linux system, along with Java 8. 
+For using JMLKelinci both Kelinci and OpenJML should be installed in a Linux system by following steps. (We used openjdk version "1.8.0_282" on Ubuntu 18.4, also both Kelinci and OpenJML are supported with Java 8) 
 
-For using JMLKelinci first, two following tools should be installed in a Linux system. (We used Ubuntu 18.4) 
-Two following links are available to install them: 
-1. [Kelinci](https://github.com/isstac/kelinci), and
-2. [OpenJML](https://github.com/OpenJML/OpenJML/releases) with the last release of OpenJML. 
-Kelinci is a guided fuzzer, and you should follow all installing instructions.
-OpenJML is a tool based on JML that supports runtime assertion checking (RAC). We use the command-line version of OpenJML. Thus, you should only download the "openjml-0.8~.zip" file from the above link and extract it in a directory. 
+In the [Tool]() directory we provide the "openjml0.8.52" and "afl2.52b". You can find their last release by these [OpenJML](https://github.com/OpenJML/OpenJML/releases) and [AFL](https://lcamtuf.coredump.cx/afl/).
 
-After installing (extracting) OpenJML, it is necessary to make the "runrac.sh" shell script (which is in the [ShellScripts directory](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/tree/main/ShellScripts)) executable for the Linux system with the following steps.
+For using JMLKelinci first, go into the [`Tool` directory]() and open a terminal. Then, run the "setupTool.sh" which is in the [ShellScripts directory](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/tree/main/ShellScripts) to setup the fuzzer on your system. Next, make the "runrac.sh" shell script (which is in the [ShellScripts directory](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/tree/main/ShellScripts)) executable for the Linux system with the following steps.
 1. Open the shell script (for example with the "vim runrac.sh" command).
-2. Change the address of "OPENJML=$HOME/~" to a directory that OpenJML is installed (extracted) in your system, and save the shell script.
+2. Change the absolute address of "OPENJML=$HOME/~/openjml" to a directory that OpenJML is installed (extracted) in your system(Tool/openjml), and save the shell script.
 3. run "chmod u+x runrac.sh" to make the shell script executable for your system.
 
 ## Usage
