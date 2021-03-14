@@ -2,11 +2,8 @@
      import java.io.File;
      import java.io.IOException;
      import java.nio.ByteBuffer;
-     import edu.cmu.sv.kelinci.Kelinci;
-     import edu.cmu.sv.kelinci.Mem;
-
      public class KelinciDriverMain {	 
-    	 private static String address ="/home/amirfarhad/Desktop/ProgramAnalysis/codes/Kelinci/JMLKelinci/JMLKelinci/CombinationPermutation/jml";
+    	 private static String JMLAddress ="jml";
     	 public static void main(String args[]) {
 
 	 	if (args.length != 1) {
@@ -58,7 +55,7 @@
 		
 		builderProg.command("sh", "-c", "runrac " + driverArg);
 		
-		builderProg.directory(new File(address));
+		builderProg.directory(new File(JMLAddress));
 		Process process = null;
 		boolean precondition = false;
 		try {

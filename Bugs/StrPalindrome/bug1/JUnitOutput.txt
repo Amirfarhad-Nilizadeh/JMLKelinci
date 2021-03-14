@@ -1,5 +1,0 @@
-test(JUnitStrPalindrome): expected:<true> but was:<false>
-test4(JUnitStrPalindrome): expected:<true> but was:<false>
-test6(JUnitStrPalindrome): expected:<true> but was:<false>
-test8(JUnitStrPalindrome): expected:<true> but was:<false>
-false

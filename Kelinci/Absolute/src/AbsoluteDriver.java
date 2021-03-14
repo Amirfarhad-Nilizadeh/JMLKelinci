@@ -24,9 +24,9 @@ public class AbsoluteDriver {
  	//@ ensures 0 <= l ==> this.l == l;
 	//@ ensures l < 0 ==> this.l == -l;
 	public void driver() {
-		Absolute p = new Absolute();
-		this.sh = p.Absolute(sh);
-		this.i = p.Absolute(i);
-		this.l = p.Absolute(l);
+		Absolute abs = new Absolute();
+		this.sh = abs.Absolute(sh);
+		this.i = abs.Absolute(i);
+		this.l = abs.Absolute(l);
 	}
 }

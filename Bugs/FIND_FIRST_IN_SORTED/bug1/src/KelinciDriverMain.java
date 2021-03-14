@@ -2,11 +2,8 @@
      import java.io.FileInputStream;
      import java.io.IOException;
      import java.nio.ByteBuffer;
-     import edu.cmu.sv.kelinci.Kelinci;
-     import edu.cmu.sv.kelinci.Mem;
-
      public class KelinciDriverMain {	
-     private static String address ="/home/amirfarhad/Desktop/ProgramAnalysis/codes/Kelinci/JMLKelinci/firstNonTrivial/FIND_FIRST_IN_SORTED/bug1/jml"; 
+     private static String JMLAddress ="jml"; 
      public static void main(String args[]) {
 
 	 	if (args.length != 1) {
@@ -83,13 +80,13 @@
 		
 		builderProg.command("sh", "-c", "runrac " + driverArg);
 		
-		builderProg.directory(new File(address));
+		builderProg.directory(new File(JMLAddress));
 		Process process = null;
 		boolean result = false;
 		try {
 			process = builderProg.start();
 			process.waitFor();
-			result = process.exitValue() == 0 ? true : false;
+			result = process.exitValue() == 0;
 		} catch (Exception e) {	
 			e.printStackTrace();	
 			System.err.println("Error in the RunRac method!");

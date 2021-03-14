@@ -1,5 +1,0 @@
-driverArg : JMLDriver 110 12 555819297 555 555876128 555819297 555819297
-process.exitValue() : 0
-***********************************************************************
- option: true initialBalance: 555 lateRegistration: false passedCredits: 110 enrollmentCredits: 12 debit: true payment: 555819297
-precondition : true

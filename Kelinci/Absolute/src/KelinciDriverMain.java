@@ -41,7 +41,7 @@ public class KelinciDriverMain {
             		return;
 		}
 
-		AbsoluteDriver p = new AbsoluteDriver(shortNum, intNum, longNum);
-                p.driver();		 
+		AbsoluteDriver abs = new AbsoluteDriver(shortNum, intNum, longNum);
+                abs.driver();		 
      }
 }
