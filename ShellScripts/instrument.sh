@@ -1,5 +1,5 @@
 #!/bin/sh
-: ${Kel=~/kelinci} 
+: ${Kel=~/Tool/kelinci} 
 : ${OJ=~/Tool/openjml}
 cd jml
 java -jar "$OJ/openjml.jar" -rac -racPreconditionEntry *.java

@@ -113,9 +113,9 @@ Also, the above command used the default port which is define for JMLKelinci and
 
 	`java -cp "bin-instrumented:$Kel/instrumentor/build/libs/"* edu.cmu.sv.kelinci.Kelinci -port 5000 <driver-classname> @@`
 
-**8. Start fuzzing process:** Open a new terminal in a directory that has `src`, `jml`, `bin`, `bin-instr`, and `in_dir` subdirectories. Use the [startFuzzing.sh](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/blob/main/ShellScripts/startFuzzing.sh) shell script to run the fuzzer, after setting the Kel shell variable to the directory where Kelinci is installed (in the example this is `~/kelinci-master`. 
+**8. Start fuzzing process:** Open a new terminal in a directory that has `src`, `jml`, `bin`, `bin-instr`, and `in_dir` subdirectories. Use the [startFuzzing.sh](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/blob/main/ShellScripts/startFuzzing.sh) shell script to run the fuzzer, after setting the Kel shell variable to the directory where Kelinci is installed (in the example this is `~/kelinci`. 
 
-	`Kel=~/kelinci-master`
+	`Kel=~/kelinci`
 	`export Kel`
 	`startFuzzing.sh`
 
@@ -134,9 +134,9 @@ We used 28 programs from the [Java+JML dataset](https://github.com/Amirfarhad-Ni
 In these examples, we provide all of the necessary inputs (a Java program under test, entry method with JML preconditions, fuzzer driver, JMLDriver, and initial seed) to cover branches with valid inputs. 
 In our experimental study, we run each 28 correct programs of Java+JML in the JMLKelinci and Kelinci directory five times (until the fuzzer reaches 100% branch coverage), and we manually provide a JUnit for each run based on the valid inputs. (We took out generated invalid inputs, using the JML RAC to check.) 
 
-We provide two shell scripts with the name "instrument.sh" and "startFuzzing.sh" to run these examples. You should only update the directory address to locations "Kel" and "OJ" which Kelinci and OpenJML are installed for using these shell scripts.
+We provide two shell scripts with the name "instrument.sh" and "startFuzzing.sh" to run these examples. You should only update the absolute address directory to locations "Kel" and "OJ" where Kelinci and OpenJML are installed for using these shell scripts.
 
-To run JMLKelinci examples, start in the directory that you can see `src`, `jml`, and `in_dir`. Next, run the `instrument.sh` and then open a new terminal and run `startFuzzing.sh`. As explained earlier, you should set the shell variable Kel to the directory where Kelinci is installed and OJ to the directory where OpenJML is installed, and both of these shell variables must be exported (to the shell's environment).
+To run JMLKelinci examples, start in the directory that you can see `src`, `jml`, and `in_dir`. Next, run the `instrument.sh` and then open a new terminal and run `startFuzzing.sh` in the new terminal. As explained earlier, you should set the shell variable Kel to the directory where Kelinci is installed and OJ to the directory where OpenJML is installed.
 
 To run the Kelinci examples with these shell scripts, open a terminal in a directory that you see `src`, and `in_dir`. Then, 1) run the "instrument.sh" to compile the Java program under test and the fuzzer driver. Also, it will instrument the bytecode to be used with the fuzzer. Also, it starts the fuzzer server with the default port that is 7007 (you can change the port as explained earlier). 2) Open a new terminal and run the "startFuzzing.sh" to start fuzzing and discovering new branches.
 
