@@ -46,7 +46,7 @@ The entry method's precondition can be written manually in JML (or it could be i
 
 See the [LeapYear example](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/tree/main/Examples/JMLKelinci/LeapYear) for a sample of these inputs.
 1. The JPUT is in the file [src/LeapYear.java](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/blob/main/Examples/JMLKelinci/LeapYear/src/LeapYear.java).
-2. The JMLKelinci driver is [src/KelinciDriverMain.java](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/blob/main/JMLKelinci/LeapYear/src/KelinciDriverMain.java)
+2. The JMLKelinci driver is [src/KelinciDriverMain.java](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/blob/main/Examples/JMLKelinci/LeapYear/src/KelinciDriverMain.java)
 3. The initial seed is [in_dir/example.txt](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/blob/main/Examples/JMLKelinci/LeapYear/in_dir/example.txt)
 4. The entry method's precondition is the JML annotation in [jml/LeapYear.java](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/blob/main/Examples/JMLKelinci/LeapYear/jml/LeapYear.java)
 5. The JMLDriver is [jml/JMLDriver.java](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/blob/main/Examples/JMLKelinci/LeapYear/jml/JMLDriver.java)
