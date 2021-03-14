@@ -4,6 +4,8 @@
 cd jml
 java -jar "$OJ/openjml.jar" -rac -racPreconditionEntry *.java
 cd ..
+mkdir bin
+mkdir bin-instr
 cd src
 javac -cp ".:$Kel/instrumentor/build/libs/kelinci.jar" *.java -d ../bin
 cd ..
