@@ -58,7 +58,7 @@
             		e.printStackTrace();
             		return;
 		}
-		Palindrome p = new Palindrome();
+		StrPalindrome p = new StrPalindrome();
                 p.isPalindrome(inputString);		 
 	 }
      }

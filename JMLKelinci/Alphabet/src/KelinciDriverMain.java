@@ -6,7 +6,7 @@
      import java.nio.ByteBuffer;
 
      public class KelinciDriverMain {	
-         private static String address ="~/jml"; 
+         private static String JMLAddress ="jml"; 
          public static void main(String args[]) {
 
 	 	if (args.length != 1) {
@@ -58,7 +58,7 @@
 		
 		builderProg.command("sh", "-c", "runrac " + driverArg);
 		
-		builderProg.directory(new File(address));
+		builderProg.directory(new File(JMLAddress));
 		Process process = null;
 		boolean result = false;
 		try {

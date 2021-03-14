@@ -3,7 +3,7 @@ public class JMLDriver {
 	{
 		String str = argv[0];
 		try { 
-			Palindrome p = new Palindrome();
+			StrPalindrome p = new StrPalindrome();
 			p.isPalindrome(str);
 		} catch (IllegalArgumentException e) {
 			System.err.println("JMLDriver");
