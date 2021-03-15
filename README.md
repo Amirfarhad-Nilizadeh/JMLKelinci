@@ -9,19 +9,18 @@ JMLKelinci has four advantages in comparison with Kelinci:
 3. The pool of (interesting) tests that will be generated with JMLkelinci consists of valid inputs (except for at most one invalid input). Thus, the genetic algorithm used by Kelinci has an increased probability of generating other valid inputs; this should result in achieving branch coverage of the program under test with valid inputs more efficiently.
 4. The initial seed for the fuzzer can be chosen with fewer restrictions. 
 
-Also, 28 examples from the [Java+JML](https://github.com/Amirfarhad-Nilizadeh/Java-JML) dataset used in the TAP's study (under review paper) are available to reproduce the results. Each program ran five times with Kelinci and JMLKelinci; valid generated input tests for each run are collected manually in a JUnit. 
+Also, 28 examples from the [Java+JML](https://github.com/Amirfarhad-Nilizadeh/Java-JML) dataset used in the TAP's study (under review paper) are available to reproduce the results. **To reproduce the TAP's study first do the installation process and then go to the "Executing Examples" section and use provided shell scripts.**  Each program ran five times with Kelinci and JMLKelinci; valid generated input tests for each run are collected manually in a JUnit. 
 
-To reproduce the TAP's study first do the installation process and then go to the "Executing Examples" section and use provided shell scripts. 
 
 # Installation
 
 For using JMLKelinci both Kelinci and OpenJML should be installed in a Linux system by following steps. (We used openjdk version "1.8.0_282" on Ubuntu 18.4, also both Kelinci and OpenJML are supported with Java 8) 
 
-In the [Tool](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/tree/main/Tool) directory we provide the "openjml0.8.52" and "afl2.52b". You can find their last release by these [OpenJML](https://github.com/OpenJML/OpenJML/releases) and [AFL](https://lcamtuf.coredump.cx/afl/).
+In the [Tool](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/tree/main/Tool) directory you can find last release (in March 2021) of "openjml0.8.52", "Kelinci", and "afl2.52b". You can find their future last release by these [OpenJML](https://github.com/OpenJML/OpenJML/releases), [Kelinci](https://github.com/isstac/kelinci), and [AFL](https://lcamtuf.coredump.cx/afl/).
 
-For using JMLKelinci first, go into the [Tool directory](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/tree/main/Tool) and open a terminal. Then, run the "setupTool.sh" which is in the [ShellScripts directory](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/tree/main/ShellScripts) to setup the fuzzer on your system. Next, make the "runrac.sh" shell script (which is in the [ShellScripts directory](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/tree/main/ShellScripts)) executable for the Linux system with the following steps.
+For using JMLKelinci after downolading the tool, go into the [Tool directory](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/tree/main/Tool) in your system and open a terminal. Then, run the "setupTool.sh" on the directory (which is in the directory) to setup the fuzzer on your system. (Also, you can find "setupTool.sh" in the [ShellScripts directory](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/tree/main/ShellScripts)). Next, make the "runrac.sh" shell script (which is in the [ShellScripts directory](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/tree/main/ShellScripts)) executable for the Linux system with the following steps.
 1. Open the shell script (for example with the "vim runrac.sh" command).
-2. Change the absolute address of "OPENJML=$HOME/~/openjml" to a directory that OpenJML is installed (extracted) in your system(Tool/openjml), and save the shell script.
+2. Change the absolute address of "OPENJML=$HOME/~/Tool/openjml" to an absolute directory that OpenJML is installed (extracted) in your system(Tool/openjml), and save the shell script.
 3. run "chmod u+x runrac.sh" to make the shell script executable for your system.
 
 ## Usage
@@ -132,11 +131,11 @@ The fuzzer will run until stopped. You will thus need to stop it (say, using Con
 We used 28 programs from the [Java+JML dataset](https://github.com/Amirfarhad-Nilizadeh/Java-JML) and 28 buggy programs from the [BuggyJava+JML dataset](https://github.com/Amirfarhad-Nilizadeh/BuggyJavaJML). 
 
 In these examples, we provide all of the necessary inputs (a Java program under test, entry method with JML preconditions, fuzzer driver, JMLDriver, and initial seed) to cover branches with valid inputs. 
-In our experimental study, we run each 28 correct programs of Java+JML in the JMLKelinci and Kelinci directory five times (until the fuzzer reaches 100% branch coverage), and we manually provide a JUnit for each run based on the valid inputs. (We took out generated invalid inputs, using the JML RAC to check.) 
+In our experimental study, we ran each 28 correct programs of Java+JML in the JMLKelinci and Kelinci directory five times (until the fuzzer reaches 100% branch coverage), and we manually provide a JUnit for each run based on the valid inputs. (We took out generated invalid inputs, using the JML RAC to check.) 
 
-We provide two shell scripts with the name "instrument.sh" and "startFuzzing.sh" to run these examples. You should only update the absolute address directory to locations "Kel" and "OJ" where Kelinci and OpenJML are installed for using these shell scripts.
+We provide two shell scripts with the name "instrument.sh" and "startFuzzing.sh" to run these examples, which are in the [ShellScripts directory](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/tree/main/ShellScripts). You should only update the address directory in these two shell scripts ("Kel" and "OJ") by giving an absolute address to locations where Kelinci and OpenJML are installed before running these shell scripts.
 
-To run JMLKelinci examples, start in the directory that you can see `src`, `jml`, and `in_dir`. Next, run the `instrument.sh` and then open a new terminal and run `startFuzzing.sh` in the new terminal. As explained earlier, you should set the shell variable Kel to the directory where Kelinci is installed and OJ to the directory where OpenJML is installed.
+To run JMLKelinci examples, open a terminal in the directory that you can see `src`, `jml`, and `in_dir`. Next, run the `instrument.sh` and then open a new terminal in the same directory and run `startFuzzing.sh` in the new terminal. As explained earlier, you should set the shell variable "Kel" to the directory where Kelinci is installed and "OJ" to the directory where OpenJML is installed.
 
 To run the Kelinci examples with these shell scripts, open a terminal in a directory that you see `src`, and `in_dir`. Then, 1) run the "instrument.sh" to compile the Java program under test and the fuzzer driver. Also, it will instrument the bytecode to be used with the fuzzer. Also, it starts the fuzzer server with the default port that is 7007 (you can change the port as explained earlier). 2) Open a new terminal and run the "startFuzzing.sh" to start fuzzing and discovering new branches.
 
@@ -144,7 +143,7 @@ After running both shell scripts (for both JMLKelinci and standard Kelinci), you
 
 For running the buggy version, run the same process as explained for JMLKelinci on buggy programs.
 
-For this study, we used OpenJML v.0.46, but it also works perfectly with the last release (v.0.8.52).
+For this study, we used OpenJML v.0.8.46, but it also works perfectly with the (March 2021) last release (v.0.8.52).
 
 # Architecture
 
