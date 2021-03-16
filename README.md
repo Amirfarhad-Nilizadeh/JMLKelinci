@@ -20,7 +20,9 @@ In the [Tool](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/tree/main/Tool)
 
 For using JMLKelinci after downolading th Tool directory, go into the [Tool directory](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/tree/main/Tool) in your system and open a terminal. Then, run the "setupTool.sh" from that directory to set up the fuzzer on your system. Next, make the "runrac.sh" shell script (which is in the [ShellScripts directory](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/tree/main/ShellScripts)) executable for the Linux system with the following steps.
 1. Open the shell script (for example with the `vim runrac.sh` command).
-2. Change the address of in the shell variable `OPENJML` to the full path to where OpenJML has been extracted in your system; for example you might change the script to say: 	           OPENJML="$HOME/Tool/openjml"
+2. Change the address of in the shell variable `OPENJML` to the full path to where OpenJML has been extracted in your system; for example you might change the script to say: 	          
+     OPENJML="$HOME/Tool/openjml"
+     
 and then save the edited shell script.
 3. run `chmod u+x runrac.sh` to make the shell script executable for your system.
 
@@ -105,7 +107,7 @@ Also, the above command used the default port which is define for JMLKelinci and
 
 **8. Start fuzzing process:** Open a new terminal in a directory that has `src`, `jml`, `bin`, `bin-instr`, and `in_dir` subdirectories. Use the [startFuzzing.sh](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/blob/main/ShellScripts/startFuzzing.sh) shell script to run the fuzzer, after setting the Kel shell variable to the directory where Kelinci is installed (in the example this is `~/kelinci`. 
 
-	Kel=~/kelinci
+	Kel=~/Tool/kelinci
 	export Kel
 	startFuzzing.sh
 
