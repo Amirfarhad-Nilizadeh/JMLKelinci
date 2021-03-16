@@ -20,7 +20,7 @@ In the [Tool](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/tree/main/Tool)
 
 For using JMLKelinci after downolading th Tool directory, go into the [Tool directory](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/tree/main/Tool) in your system and open a terminal. Then, run the "setupTool.sh" from that directory to set up the fuzzer on your system. Next, make the "runrac.sh" shell script (which is in the [ShellScripts directory](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/tree/main/ShellScripts)) executable for the Linux system with the following steps.
 1. Open the shell script (for example with the `vim runrac.sh` command).
-2. Change the address of in the shell variable `OPENJML` to the full path to where OpenJML has been extracted in your system; for example you might change the script to say: 	           `OPENJML="$HOME/Tool/openjml"`
+2. Change the address of in the shell variable `OPENJML` to the full path to where OpenJML has been extracted in your system; for example you might change the script to say: 	           OPENJML="$HOME/Tool/openjml"
 and then save the edited shell script.
 3. run `chmod u+x runrac.sh` to make the shell script executable for your system.
 
@@ -61,71 +61,61 @@ After the installation process, and making the "runrac.sh" executable for the Li
 
 **3. Build the JMLDriver:** A JMLDriver is a simple driver that runs the entry method with its precondition.  
 
-**4. Set up directory structure:** Five directories should be created, named: "src," "jml," "bin," "bin-instr", and "in_dir". (Look at JMLKelinci examples) 
+**4. Set up directory structure:** Five directories should be created, named: `src`, `jml`, `bin`, `bin-instr`, and `in_dir`. (Look at JMLKelinci examples.) The `src` directory contains the Java program under test (JPUT) and the fuzzer driver. The `jml` directory contains the entry method (with JML precondition) and JMLDriver. The `bin` directory is initially an empty directory, and will contain the compiled version of the program under test and the fuzzer driver. The `bin-instr` directory is initially an empty directory, and will contain the instrumented bin file of the program under test and the fuzzer driver. The `in_dir` directory contains the initial seed(s) that we will explain later in detail.
 
-	`mkdir src; mkdir jml; mkdir bin; mkdir bin-instr; mkdir in_dir`
+The following command will create the needed directories on Linux:
 
-The "src" directory: contains the Java program under test and the fuzzer driver. 
-
-The "jml" directory: contains the entry method (with JML precondition) and JMLDriver.
-
-This command compiles the JMLDriver and entry method with its precondition. It checks the program's precondition. Thus, the "jml" driver has the source and compiled version of the entry method and JMLDriver.
-
-The "bin" directory: This is initially an empty directory, and will contain the compiled version of the program under test and the fuzzer driver.
-
-The "bin-instr" directory: This is initially an empty directory, and will contain the instrumented bin file of the program under test and the fuzzer driver.
-
-The "in_dir" directory: Contain the initial seed(s) that we will explain later in detail.
+	mkdir src; mkdir jml; mkdir bin; mkdir bin-instr; mkdir in_dir
 
 **5. Compile and Instrument:**  
 
-To compile and instrument the program under test, follow the commands below. (We assume that JPUT and the fuzzer driver are in the "src" directory, and the compiled version of the entry method and JMLDriver are in the "jml" directory.)
+To compile and instrument the program under test, follow the commands below. (We assume that JPUT and the fuzzer driver are in the `src` directory.)
 
 First open a shell in a directory that has `src`, `jml`, `bin`, `bin-instr`, and `in_dir` subdirectories. Then, run the following commands.
 We assume that OpenJML is installed in the directory `$OJ`:
 
-	`cd jml`
-	`java -jar "$OJ/openjml.jar" -rac -racPreconditionEntry *.java`
-	`cd ..`
+	cd jml
+	java -jar "$OJ/openjml.jar" -rac -racPreconditionEntry *.java
+	cd ..
 
-The above command compiled the precondition in the `jml` directory.
+The above command compiles the precondition in the `jml` directory.
 
 Then run the following commands (from the same directory). We assume that Kelinci is installed in the directory `$Kel`.
 
-	`cd src`
-	`javac -cp ".:$Kel/instrumentor/build/libs/kelinci.jar" *.java -d ../bin`
-	`cd ..`
+	cd src
+	javac -cp ".:$Kel/instrumentor/build/libs/kelinci.jar" *.java -d ../bin
+	cd ..
 
-The above command compiles programs in the "src" directory, and the destination of the compiled programs is the "bin" directory. (Thus the bin directory should no longer be empty.)
+The above command compiles programs in the `src` directory, and the destination of the compiled programs is the `bin` directory. (Thus the bin directory should no longer be empty.)
 
 Then, use the following commands to instrument the program for the fuzzing process.  
 
-	`java -jar  "$Kel/instrumentor/build/libs/kelinci.jar" -i ./bin -o ./bin-instr`
-	`java -cp ./bin-instr/ edu.cmu.sv.kelinci.Kelinci KelinciDriverMain @@`
+	java -jar  "$Kel/instrumentor/build/libs/kelinci.jar" -i ./bin -o ./bin-instr
+	java -cp ./bin-instr/ edu.cmu.sv.kelinci.Kelinci KelinciDriverMain @@
 
-**6. Initial Seed(s):** You should provide an initial seed in a file the directory named `in_dir`. (Any files there will be used.) The program under test should not go to a crash by using this seed. The fuzzer uses this seed in the mutation process to generate new inputs. 
+**6. Initial Seed(s):** You should provide an initial seed in a file the directory named `in_dir`. (Any files there will be used.) The program under test should not crash by using this seed. The fuzzer uses this seed in the mutation process to generate new inputs. 
 
 **7. Start the fuzzer server:** To start the fuzzer server open a terminal in a directory that has `src`, `jml`, `bin`, `bin-instr`, and `in_dir` subdirectories. The, use the following commands. 
 
-	`java -cp "bin-instrumented:$Kel/instrumentor/build/libs/"* edu.cmu.sv.kelinci.Kelinci <driver-classname> @@`
+	java -cp "bin-instrumented:$Kel/instrumentor/build/libs/"* edu.cmu.sv.kelinci.Kelinci <driver-classname> @@
 
 Also, the above command used the default port which is define for JMLKelinci and Kelinci (the default port is 7007). Instead of the above command you can specify a port number with the following command (following command selects port 5000) to run several fuzzer in a system with using different ports: 
 
-	`java -cp "bin-instrumented:$Kel/instrumentor/build/libs/"* edu.cmu.sv.kelinci.Kelinci -port 5000 <driver-classname> @@`
+	java -cp "bin-instrumented:$Kel/instrumentor/build/libs/"* edu.cmu.sv.kelinci.Kelinci -port 5000 <driver-classname> @@
 
 **8. Start fuzzing process:** Open a new terminal in a directory that has `src`, `jml`, `bin`, `bin-instr`, and `in_dir` subdirectories. Use the [startFuzzing.sh](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/blob/main/ShellScripts/startFuzzing.sh) shell script to run the fuzzer, after setting the Kel shell variable to the directory where Kelinci is installed (in the example this is `~/kelinci`. 
 
-	`Kel=~/kelinci`
-	`export Kel`
-	`startFuzzing.sh`
+	Kel=~/kelinci
+	export Kel
+	startFuzzing.sh
 
-If everything works correctly, then JMLKelinci will use AFL to cover the program's under test branches with valid inputs.
+If everything works correctly, then JMLKelinci will use AFL to cover the JPUT's branches with valid inputs.
 
-**9. Output:** After a short time, the AFL interface will start to discover program's branches with valid inputs. Also, an output directory will be generated (`fuzzer-out` in this study). The fuzzer will save all (interesting) valid inputs in a `queue` subdirectory that trigger different program behaviors (discovering new branches). Also, "crashes" and "hangs" subdirectories will contain valid generated inputs that resulted in a crash or a time-out. See the [AFL website](http://lcamtuf.coredump.cx/afl/) for more details. 
+**9. Output:** After a short time, the AFL interface will start to discover the JPUT's branches with valid inputs. Also, an output directory will be generated (`fuzzer-out` in this study). The fuzzer will save all (interesting) valid inputs in a `queue` subdirectory that trigger different program behaviors (discovering new branches). Also, "crashes" and "hangs" subdirectories will contain valid generated inputs that resulted in a crash or a time-out. See the [AFL website](http://lcamtuf.coredump.cx/afl/) for more details. 
 
 The fuzzer will run until stopped. You will thus need to stop it (say, using Control-C) when you believe it has run long enough. Alternatively you can use the Unix `timeout` command when running `startFuzzing.sh` as in the following, which will run the fuzzer for two days:
 
-	`timeout 2d startFuzzing.sh`
+	timeout 2d startFuzzing.sh
 
 # Executing Examples
 
