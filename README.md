@@ -20,7 +20,7 @@ In the [Tool](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/tree/main/Tool)
 
 For using JMLKelinci after downolading th Tool directory, go into the [Tool directory](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/tree/main/Tool) in your system and open a terminal. Then, run the "setupTool.sh" from that directory to set up the fuzzer on your system. Next, make the "runrac.sh" shell script (which is in the [ShellScripts directory](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/tree/main/ShellScripts)) executable for the Linux system with the following steps.
 1. Open the shell script (for example with the `vim runrac.sh` command).
-2. Change the address of in the shell variable OPENJML to the full path to where OpenJML has been extracted in your system; for example you might change the script to say: 	           `OPENJML="$HOME/Tool/openjml"`
+2. Change the address of in the shell variable `OPENJML` to the full path to where OpenJML has been extracted in your system; for example you might change the script to say: 	           `OPENJML="$HOME/Tool/openjml"`
 and then save the edited shell script.
 3. run `chmod u+x runrac.sh` to make the shell script executable for your system.
 
@@ -131,8 +131,8 @@ The fuzzer will run until stopped. You will thus need to stop it (say, using Con
 
 We used 28 programs from the [Java+JML dataset](https://github.com/Amirfarhad-Nilizadeh/Java-JML) and 28 buggy programs from the [BuggyJava+JML dataset](https://github.com/Amirfarhad-Nilizadeh/BuggyJavaJML). 
 
-In these examples, we provide all of the necessary inputs (a Java program under test, entry method with JML preconditions, fuzzer driver, JMLDriver, and initial seed) to cover branches with valid inputs. 
-In our experimental study, we ran each 28 correct programs of Java+JML in the JMLKelinci and Kelinci directory five times (until the fuzzer reaches 100% branch coverage), and we manually provide a JUnit for each run based on the valid inputs. (We took out generated invalid inputs, using the JML RAC to check.) 
+In these examples, we provide all of the necessary inputs (a Java program under test, an entry method with a JML precondition, a fuzzer driver, a JMLDriver, and an initial seed) to cover branches with valid inputs. 
+In our experimental study, we ran each of the 28 correct programs of the [Java+JML dataset](https://github.com/Amirfarhad-Nilizadeh/Java-JML) in the `JMLKelinci` and `Kelinci` directory five times (until the fuzzer reaches 100% branch coverage), and we manually provide a JUnit test for each run based on the valid inputs. (We took out generated invalid inputs, using the JML RAC to check.) 
 
 We provide two shell scripts with the name "instrument.sh" and "startFuzzing.sh" to run these examples, which are in the [ShellScripts directory](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/tree/main/ShellScripts). You should only update the address directory in these two shell scripts ("Kel" and "OJ") by giving an absolute address to locations where Kelinci and OpenJML are installed before running these shell scripts.
 
