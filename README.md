@@ -9,19 +9,20 @@ JMLKelinci has four advantages in comparison with Kelinci:
 3. The pool of (interesting) tests that will be generated with JMLkelinci consists of valid inputs (except for at most one invalid input). Thus, the genetic algorithm used by Kelinci has an increased probability of generating other valid inputs; this should result in achieving branch coverage of the program under test with valid inputs more efficiently.
 4. The initial seed for the fuzzer can be chosen with fewer restrictions. 
 
-Also, 28 examples from the [Java+JML](https://github.com/Amirfarhad-Nilizadeh/Java-JML) dataset used in the TAP's study (under review paper) are available to reproduce the results. **To reproduce the TAP's study first do the installation process and then go to the "Executing Examples" section and use provided shell scripts.**  Each program ran five times with Kelinci and JMLKelinci; valid generated input tests for each run are collected manually in a JUnit. 
+Also, 28 examples from the [Java+JML](https://github.com/Amirfarhad-Nilizadeh/Java-JML) dataset used in a paper under review are available to reproduce that paper's results. **To reproduce those results, first do the installation process and then go to the "Executing Examples" section and use the provided shell scripts.**  Each program was run five times with Kelinci and JMLKelinci; valid generated input tests for each run are collected manually in a JUnit test. 
 
 
 # Installation
 
-For using JMLKelinci both Kelinci and OpenJML should be installed in a Linux system by following steps. (We used openjdk version "1.8.0_282" on Ubuntu 18.4, also both Kelinci and OpenJML are supported with Java 8) 
+For using JMLKelinci both Kelinci and OpenJML should be installed in a Linux system using the following steps. (We used openjdk version "1.8.0_282" on Ubuntu 18.4, also both Kelinci and OpenJML require Java 8.) 
 
-In the [Tool](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/tree/main/Tool) directory you can find last release (in March 2021) of "openjml0.8.52", "Kelinci", and "afl2.52b". You can find their future last release by these [OpenJML](https://github.com/OpenJML/OpenJML/releases), [Kelinci](https://github.com/isstac/kelinci), and [AFL](https://lcamtuf.coredump.cx/afl/).
+In the [Tool](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/tree/main/Tool) directory you can find last release (in March 2021) of "openjml0.8.52", "Kelinci", and "afl2.52b". You need to install these to use JMLKelinci as described below. (You can find later releases of these tools by the following links: [OpenJML](https://github.com/OpenJML/OpenJML/releases), [Kelinci](https://github.com/isstac/kelinci), and [AFL](https://lcamtuf.coredump.cx/afl/).)
 
-For using JMLKelinci after downolading the tool, go into the [Tool directory](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/tree/main/Tool) in your system and open a terminal. Then, run the "setupTool.sh" on the directory (which is in the directory) to setup the fuzzer on your system. (Also, you can find "setupTool.sh" in the [ShellScripts directory](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/tree/main/ShellScripts)). Next, make the "runrac.sh" shell script (which is in the [ShellScripts directory](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/tree/main/ShellScripts)) executable for the Linux system with the following steps.
-1. Open the shell script (for example with the "vim runrac.sh" command).
-2. Change the absolute address of "OPENJML=$HOME/~/Tool/openjml" to an absolute directory that OpenJML is installed (extracted) in your system(Tool/openjml), and save the shell script.
-3. run "chmod u+x runrac.sh" to make the shell script executable for your system.
+For using JMLKelinci after downolading th Tool directory, go into the [Tool directory](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/tree/main/Tool) in your system and open a terminal. Then, run the "setupTool.sh" from that directory to set up the fuzzer on your system. Next, make the "runrac.sh" shell script (which is in the [ShellScripts directory](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/tree/main/ShellScripts)) executable for the Linux system with the following steps.
+1. Open the shell script (for example with the `vim runrac.sh` command).
+2. Change the address of in the shell variable OPENJML to the full path to where OpenJML has been extracted in your system; for example you might change the script to say: 	           `OPENJML="$HOME/Tool/openjml"`
+and then save the edited shell script.
+3. run `chmod u+x runrac.sh` to make the shell script executable for your system.
 
 ## Usage
 
