@@ -126,13 +126,13 @@ We used 28 programs from the [Java+JML dataset](https://github.com/Amirfarhad-Ni
 In these examples, we provide all of the necessary inputs (a Java program under test, an entry method with a JML precondition, a fuzzer driver, a JMLDriver, and an initial seed) to cover branches with valid inputs. 
 In our experimental study, we ran each of the 28 correct programs of the [Java+JML dataset](https://github.com/Amirfarhad-Nilizadeh/Java-JML) in the `JMLKelinci` and `Kelinci` directory five times (until the fuzzer reached 100% branch coverage), and we manually provided a JUnit test for each run based on the valid inputs. (We took out generated invalid inputs, using the JML RAC to check.) 
 
-We provide two shell scripts with the name "instrument.sh" and "startFuzzing.sh" to run these examples, which are in the [ShellScripts directory](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/tree/main/ShellScripts). Before running these shell scripts, you should update the `Kel` and `OJ` variables in each of them, setting them to the full paths to the directories where Kelinci and OpenJML are installed (respectively).
+We provide two shell scripts with the name `instrumentJMLKelinci.sh` and `startFuzzing.sh` to run these examples, which are in the [ShellScripts directory](https://github.com/Amirfarhad-Nilizadeh/JMLKelinci/tree/main/ShellScripts). Before running these shell scripts, you should update the `Kel` and `OJ` variables in each of them, setting them to the full paths to the directories where Kelinci and OpenJML are installed (respectively).
 
 For this study, we used OpenJML v.0.8.46, but the examples also work with the (March 2021) last release (v.0.8.52).
 
 ## Running the Examples for JMLKelinci
 
-To run JMLKelinci examples, open a terminal in the directory that you can see `src`, `jml`, and `in_dir`. Next, run the `instrument.sh` script and then open a new terminal (without closing the first terminal) in the same directory and then run `startFuzzing.sh` in the new terminal. As explained earlier, make sure that the shell variable `Kel` is set to the full path of the directory where Kelinci is installed and `OJ` is set to the full path to the directory where OpenJML is installed.
+To run JMLKelinci examples, open a terminal in the directory that you can see `src`, `jml`, and `in_dir`. Next, run the `instrumentJMLKelinci.sh` script and then open a new terminal (without closing the first terminal) in the same directory and then run `startFuzzing.sh` in the new terminal. As explained earlier, make sure that the shell variable `Kel` is set to the full path of the directory where Kelinci is installed and `OJ` is set to the full path to the directory where OpenJML is installed.
 
 After running both shell scripts, you will see the `fuzzer-out` directory that will have all generated (interesting) inputs that are valid and discover a branch or that lead to a crash or time-out, as explained earlier in Execution Instructions part 9.
 
@@ -140,9 +140,17 @@ For running the buggy versions of the examples, run the same process as above on
 
 ## Running the Examples for Kelinci
 
-To run the Kelinci examples, open a terminal in a directory that you see `src`, and `in_dir`. Then, 1) run the `instrument.sh` script to compile and instrument the Java program under test and the fuzzer driver. 2) Open a new terminal (without closing the first terminal) and run the `startFuzzing.sh` script to start fuzzing and discovering new branches.
+To run the Kelinci examples, open a terminal in a directory that you see `src`, and `in_dir`. Then, 1) run the `instrumentKelinci.sh` script to compile and instrument the Java program under test and the fuzzer driver. 2) Open a new terminal (without closing the first terminal) and run the `startFuzzing.sh` script to start fuzzing and discovering new branches.
 
 After running both shell scripts, you will see the `fuzzer-out` directory that will have all generated (interesting) inputs (which may be invalid) that discover a branch or lead to a crash or time-out, as explained earlier in Execution Instructions part 9.
+
+
+## Extracting test from generated data test by JMLKelinci
+
+After JMLKelinci (or Kelinci) starts to run, the tool will create a new directory named "fuzzer-out" that saves interesting generated data. The generated data by JMLKelinic that are interesting will be saved in the "/fuzzer-out/afl/queue" (those that have "+cov" discovered a new branch), and those that find a crash will be saved in the "/fuzzer-out/afl/crashes" directories.
+   
+It is needed to change the generated data by JMLKelinci to actual input tests (like other guided fuzzer tools that have a driver). Thus, the same driver is needed for extracting actual inputs for running the JPUT. For all examples, we provide an "ExtractDriver.java" to help to extract files, but it needs some manual work. First, after running the fuzzer tool, move the "ExtractDriver.java" and the JPUT that is in the "\src" directory to the "/fuzzer-out/afl/queue". Then, copy the name of the each generated data test and paste it in the "FileInputStream fis=new FileInputStream("id:....");" and then run `javac *.java ; java ExtractDriver`. 
+We did it for our five runs in the experimental results, and we create a JUnit test based on each run. 
 
 # Architecture
 
