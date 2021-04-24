@@ -1,7 +1,9 @@
 #!/bin/sh
 : ${Kel=~/Tool/kelinci} 
 : ${OJ=~/Tool/openjml}
+rm -r bin
 mkdir bin
+rm -r bin-instr
 mkdir bin-instr
 cd src
 javac -cp ".:$Kel/instrumentor/build/libs/kelinci.jar" *.java -d ../bin
